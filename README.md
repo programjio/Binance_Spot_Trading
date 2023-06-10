@@ -24,7 +24,7 @@ Examples :
 - For placing OCO order for the previously did BUY order click the button OCOBUYCoverSellOrder
 - To Cancell All open Orders Click the Cancel All Open Orders Button
 - To Restrat the program click the Restart Button
-# How to Trade using this code Refer this chart https://www.tradingview.com/script/jU78tzAr-LongBuyLongSellIndicator/
+#### How to Trade using this code Refer this chart https://www.tradingview.com/script/jU78tzAr-LongBuyLongSellIndicator/
 - This Chart Indicator has built in SL ,Take Profit lines ,Adjust the proper SL and TP values and perform the backtest using https://www.tradingview.com/script/0zX3PYZi-LongBuyLongSell-90-profit-Excellent-Win-Rate-Strategy-indicator/
 - Once the proper Stop loss and Take profit is identified set that value in GUI (*Examples Below *)
 - Now place the SEll order for the desired quanity once the SELL order is executed ,Simultaneouly add the OCO order this will place the Stoploss and take profit order.
