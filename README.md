@@ -48,6 +48,12 @@ Examples :
 ![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/a45d33fc-4772-4a38-9876-fedac43c36f5)
 -Some More Snapshots of LongBuyLongSell Indicator 1min Chart
 ![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/5b7ff08f-4dc1-45a0-9735-a75e04f70888)
+- 210 minute chart Long Risk Reward is 1:4 Stop loss 1% Take Profit 4%
+![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/d92310f3-ff9d-45ef-8ddf-f20820094f57)
+-The Last four 210min chart Both Long and Short Trading Setup with Risk Reward Ratio of 1:4 atleast
+![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/53625d25-082a-4e93-b0c4-6ed8e11e81b3)
+
+
 
 
 
