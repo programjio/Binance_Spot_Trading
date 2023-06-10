@@ -1,9 +1,11 @@
 # Binance_Spot_Trading with LongBuyLongSellIndicator
-* This is developed with the base of LongBuyLongSell Indicator ,User call it as LBLS Indicator *
+### This is developed with the base of LongBuyLongSell Indicator ,User call it as LBLS Indicator 
 https://www.tradingview.com/script/0zX3PYZi-LongBuyLongSell-90-profit-Excellent-Win-Rate-Strategy-indicator/
+
 https://www.tradingview.com/script/jU78tzAr-LongBuyLongSellIndicator/
 
 _More info about this indicator is here_ 
+
 https://t.me/longbuylongsellindicator
 
 - Simple code for Binance Spot Trading with GUI. Stop loss ,Take Profit ,Buy Sell Commands added .Trailing Stop etc
