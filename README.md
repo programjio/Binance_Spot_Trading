@@ -46,4 +46,8 @@ Examples :
 
 - To Know the recently placed 5 order details click this button
 ![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/a45d33fc-4772-4a38-9876-fedac43c36f5)
+-Some More Snapshots of LongBuyLongSell Indicator 1min Chart
+![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/5b7ff08f-4dc1-45a0-9735-a75e04f70888)
+
+
 
