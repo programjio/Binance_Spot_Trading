@@ -12,7 +12,7 @@ https://t.me/longbuylongsellindicator
 - Simply run main.py file . GUI will open and display the current price of the tradingpair 
 - Feed your API and Key in the credentials.py file
 - In main.py percencent1 = 0.02 percencent2 = 1  percencents2 = 1 percencents1 = 0.02  shall be changed to set the desired buy or sell percentage for the trading
-### ![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/8847a34e-23a5-4f61-88f9-c85b99f066d9)
+![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/8847a34e-23a5-4f61-88f9-c85b99f066d9)
 - In the GUI set the desired TakeProfit Percentage ,Stop Loss percentage and ticket the box 
 - Also Check the Market order or Limit Order Box 
 Examples :
