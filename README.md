@@ -1,4 +1,5 @@
 # Binance_Spot_Trading with LongBuyLongSellIndicator
+* This is developed with the base of LongBuyLongSell Indicator ,User call it as LBLS Indicator *
 https://www.tradingview.com/script/0zX3PYZi-LongBuyLongSell-90-profit-Excellent-Win-Rate-Strategy-indicator/
 https://www.tradingview.com/script/jU78tzAr-LongBuyLongSellIndicator/
 
