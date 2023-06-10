@@ -1,5 +1,5 @@
 # Binance_Spot_Trading with LongBuyLongSellIndicator
-https://www.tradingview.com/script/0zX3PYZi-LongBuyLongSell-90-profit-Excellent-Win-Rate-Strategy-indicator/
+### https://www.tradingview.com/script/0zX3PYZi-LongBuyLongSell-90-profit-Excellent-Win-Rate-Strategy-indicator/
 More info about this indicator is here https://t.me/longbuylongsellindicator
 ### Simple code for Binance Spot Trading with GUI. Stop loss ,Take Profit ,Buy Sell Commands added .Trailing Stop etc
 ### Simply run main.py file . GUI will open and display the current price of the tradingpair 
