@@ -8,7 +8,7 @@ _More info about this indicator is here_
 
 https://t.me/longbuylongsellindicator
 
-- Simple code for Binance Spot Trading with GUI. Stop loss ,Take Profit ,Buy Sell Commands added .Trailing Stop etc
+- Simple code for Binance Spot Trading with GUI. Stop loss ,Take Profit ,Buy Sell Commands added .Trailing Stop etc. OCO order for placing Stop and Take profit in one click on both BUY or SELL side too.
 - Simply run main.py file . GUI will open and display the current price of the tradingpair 
 - Feed your API and Key in the credentials.py file
 - In main.py percencent1 = 0.02 percencent2 = 1  percencents2 = 1 percencents1 = 0.02  shall be changed to set the desired buy or sell percentage for the trading
