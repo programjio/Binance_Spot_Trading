@@ -24,7 +24,7 @@ Refer the below screenshots on how the Risk Reward ratio is maintined by the OCO
 Refer the below charts on how to set the Stoploss and Takeprofit in this case 0.10% as Stoploss and 0.23% as take profit is set
 ![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/f5565fe4-f598-48ca-9bc1-be3ddaa610b0)
 Risk Reward is 1:2 the same is set in the GUI.
-![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/df516f65-fc8d-4796-ad01-ee36bbf44ddc)
+![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/d937fa7f-e5b0-4c42-bbc6-1af7b84ed9bb)
 Now to place the SELL order Either click 100% or 2% button
 ![image](https://github.com/programjio/Binance_Spot_Trading/assets/56245199/d2960ef2-815d-4438-8077-5e9fdc7517ab)
 
