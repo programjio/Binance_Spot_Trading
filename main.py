@@ -15,12 +15,10 @@ import json
 
 # Import API keys from credentials.py file
 from credentials import BINANCE_API_KEY, BINANCE_SECRET_KEY
+from credentials import base_currency, quote_currency
 binance_spot_api = Client(api_key=BINANCE_API_KEY, api_secret=BINANCE_SECRET_KEY)
 # Initialize Binance client
 client = Client(BINANCE_API_KEY, BINANCE_SECRET_KEY)
-# Add the TradingPair that you want to trade
-base_currency = "BTC"
-quote_currency = "TUSD"
 tradingpair = base_currency + quote_currency
 
 
@@ -28,9 +26,9 @@ tradingpair = base_currency + quote_currency
 root = tk.Tk()
 root.title("Trading Bot")
 
-# Create a label to display error messages
+# Create a label to display error messages # This is used to display the current event status in GUI.
 error_label = tk.Label(root, text="Error Display", font=('Arial', 12), fg='red')
-error_label.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+error_label.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
 
 #Important Variables
 #order_type = ORDER_TYPE_LIMIT #ORDER_TYPE_MARKET #ORDER_TYPE_LIMIT
@@ -109,8 +107,9 @@ def get_local_timestamp():
 
 
 def buy_btc(percentage_quantity,buy_price_entry,error_textbox):
+    error_label.config(text=f'BUY ORDER Initiated:{tradingpair}', fg='green')
     # Get total TUSD balance
-    total_usd_balance = float(client.get_asset_balance(asset='TUSD')['free'])
+    total_usd_balance = float(client.get_asset_balance(asset=quote_currency)['free'])
 
     # Calculate quantity to buy
     quote_quantity = float(total_usd_balance * percentage_quantity)
@@ -118,7 +117,7 @@ def buy_btc(percentage_quantity,buy_price_entry,error_textbox):
     # Get current market price
     ticker = client.get_symbol_ticker(symbol=tradingpair)
     current_price = float(ticker['price'])
-    quantity = round(float( quote_quantity / (current_price - 1) ),4) - 0.0009 # This 10 added to get correct quantity this i am doing to get tradable quantity
+    quantity = round(float( quote_quantity / (current_price + 1) ),5) # This 10 added to get correct quantity this i am doing to get tradable quantity
     print(f"Total Balance available: {total_usd_balance} {quote_currency},Quantity to buy: {quantity} {base_currency},Current price : {current_price} {quote_currency}.")
     if quantity <= 0.0001:
         print("Error: Invalid quantity to Buy or insufficient Quantity. Please try again.\n")
@@ -144,11 +143,12 @@ def buy_btc(percentage_quantity,buy_price_entry,error_textbox):
                 type=order_type,
                 quantity=quantity
             )
-        print(f"BTC BUY Order created.quantity :{quantity} {base_currency} @price:{current_price} {quote_currency}.")
+        print(f"BUY Order created quantity :{quantity} {base_currency} @price:{current_price} {quote_currency}.")
     except BinanceAPIException as e:
         print(f"Error occurred while creating the order: {e}")
 
 def place_oco_order(side,error_textbox):
+    error_label.config(text=f'OCO ORDER Initiated: Both SL and TP will be placed {tradingpair} for the previous {side}', fg='blue')
     try:
         account_info = client.get_account()
         positions = account_info['balances']
@@ -336,6 +336,7 @@ def place_trailing_stop_order(side, percentage_quantity, buy_price_entry, error_
 
 # Define function for selling BTC
 def sell_btc(percentage_quantity,buy_price_entry, error_textbox):
+    error_label.config(text=f'SELL ORDER Initiated:{tradingpair}', fg='red')
     total_tradingpair = float(client.get_asset_balance(asset=base_currency)['free'])
     print(f"Total {tradingpair} balance available for trading: {total_tradingpair}{base_currency}.")
     if total_tradingpair < 0.0001:
@@ -643,31 +644,31 @@ restart_button.grid(row=5, column=1, pady=10)
 
 # Add Buy and Sell buttons
 percencent1 = 0.02
-buy_button = tk.Button(root, text="BUY " + tradingpair + "_" + str(percencent1 * 100) + "%", command=lambda: buy_btc(float(percencent1),0, error_textbox), font=('Arial', 10))
+buy_button = tk.Button(root, text="BUY " + tradingpair + "_" + str(percencent1 * 100) + "%", command=lambda: buy_btc(float(percencent1),0, error_textbox), font=('Arial', 10),bg="green")
 buy_button.grid(row=6, column=0, padx=10, pady=10)  #buy_button.grid(row=6, column=0, columnspan=2, padx=(50, 10), pady=10)
 
 percencent2 = 1
-buy_button = tk.Button(root, text="BUY " + tradingpair + "_" + str(percencent2 * 100) + "%", command=lambda: buy_btc(float(percencent2), 0,error_textbox), font=('Arial', 10))
+buy_button = tk.Button(root, text="BUY " + tradingpair + "_" + str(percencent2 * 100) + "%", command=lambda: buy_btc(float(percencent2), 0,error_textbox), font=('Arial', 10),bg="green")
 buy_button.grid(row=6, column=1, padx=10, pady=10)
 
 percencents2 = 1
-sell_button = tk.Button(root, text="SELL " + tradingpair+ "_" + str(percencents2 * 100) + "%", command=lambda: sell_btc(float(percencents2),0,error_textbox), font=('Arial', 10))
+sell_button = tk.Button(root, text="SELL " + tradingpair+ "_" + str(percencents2 * 100) + "%", command=lambda: sell_btc(float(percencents2),0,error_textbox), font=('Arial', 10),bg="red")
 sell_button.grid(row=6, column=2, padx=10, pady=10)
 
 percencents1 = 0.02
-sell_button = tk.Button(root, text="SELL " + tradingpair + "_" + str(percencents1 * 100) + "%", command=lambda: sell_btc(float(percencents1),0, error_textbox), font=('Arial', 10))
+sell_button = tk.Button(root, text="SELL " + tradingpair + "_" + str(percencents1 * 100) + "%", command=lambda: sell_btc(float(percencents1),0, error_textbox), font=('Arial', 10),bg="red")
 sell_button.grid(row=6, column=3, padx=10, pady=10)
 
  # Create a button to show the order details
-show_order_button = tk.Button(root, text="Show Order Details", command=show_order_details,font=('Arial', 10), bg="grey")
+show_order_button = tk.Button(root, text="Show Order Details", command=show_order_details,font=('Arial', 10), bg="gold")
 show_order_button.grid(row=6, column=0, columnspan=2, padx=10, pady=10)
 
 cancel_button = tk.Button(root, text="Cancel All \n Open orders", command=cancel_all_orders,font=('Arial', 8), bg="yellow")
-cancel_button.grid(row=7, column=2, padx=10, pady=10)
+cancel_button.grid(row=7, column=0,columnspan=2, padx=10, pady=10)
 
 #This i am doing for the sell with tp and sl in spot order
 percencents1tp = 0.001
-sell_button_tp_sl = tk.Button(root, text="SELL_withTP_SL " + tradingpair + "_" + str(percencents1tp * 100) + "%", command=lambda: sell_btc_with_tp_sl(float(percencents1tp), error_textbox), font=('Arial', 10))
+sell_button_tp_sl = tk.Button(root, text="SELL_withTP_SL " + tradingpair + "_" + str(percencents1tp * 100) + "%", command=lambda: sell_btc_with_tp_sl(float(percencents1tp), error_textbox), font=('Arial', 10),bg ="silver")
 sell_button_tp_sl.grid(row=7, column=3, padx=10, pady=10)
 
 
@@ -681,8 +682,8 @@ buy_price_entry = tk.Entry(root, width=10)
 buy_price_entry.grid(row=8, column=2, padx=1, pady=1) #buy_price_entry.pack(side="top", padx=1, pady=1)
 buy_price_entry.insert(0, "Buy Price")
 # Create buttons for buying and selling with user-defined quantity and price
-buy_custom_button = tk.Button(root, text="BUY (Custom)", command=lambda: buy_btc(float(buy_quantity_entry.get()), float(buy_price_entry.get()), error_textbox), font=('Arial', 10))
-buy_custom_button.grid(row=8, column=0, padx=1, pady=1, sticky="w")
+buy_custom_button = tk.Button(root, text="BUY (Custom)", command=lambda: buy_btc(float(buy_quantity_entry.get()), float(buy_price_entry.get()), error_textbox), font=('Arial', 10),bg="green")
+buy_custom_button.grid(row=8, column=0,columnspan=1, padx=1, pady=1, sticky="w")
 
 
 sell_quantity_entry = tk.Entry(root, width=10)
@@ -694,17 +695,17 @@ sell_price_entry.grid(row=9, column=2, padx=1, pady=1)
 sell_price_entry.insert(0, "Sell Price")
 
 
-sell_custom_button = tk.Button(root, text="SELL (Custom)", command=lambda: sell_btc(float(sell_quantity_entry.get()), float(sell_price_entry.get()), error_textbox), font=('Arial', 10))
-sell_custom_button.grid(row=9, column=0, padx=1, pady=1, sticky="w")
+sell_custom_button = tk.Button(root, text="SELL (Custom)", command=lambda: sell_btc(float(sell_quantity_entry.get()), float(sell_price_entry.get()), error_textbox), font=('Arial', 10),bg="red")
+sell_custom_button.grid(row=9, column=0,columnspan=1, padx=1, pady=1, sticky="w")
 
 
 #percencentoco = 0.25
-oco_sell_button = tk.Button(root, text="OCOBuyCoverSellOrder", command=lambda: place_oco_order("BuyCoverSellOrder",error_textbox), font=('Arial', 10))
+oco_sell_button = tk.Button(root, text="OCO_BUYCoverSellOrder", command=lambda: place_oco_order("BuyCoverSellOrder",error_textbox), font=('Arial', 10),bg="green")
 oco_sell_button.grid(row=7, column=0, padx=10, pady=10)
 
 #percencentoco = 0.25
-oco_buy_button = tk.Button(root, text="OCOSellCoverBuyOrder", command=lambda: place_oco_order("SellCoverBuyOrder",error_textbox), font=('Arial', 10))
-oco_buy_button.grid(row=7, column=1, padx=10, pady=10) #oco_buy_button.pack(side="right", padx=10, pady=10)
+oco_buy_button = tk.Button(root, text="OCO_SELLCoverBuyOrder", command=lambda: place_oco_order("SellCoverBuyOrder",error_textbox), font=('Arial', 10),bg="red")
+oco_buy_button.grid(row=7, column=1,columnspan=3, padx=10, pady=10) #oco_buy_button.pack(side="right", padx=10, pady=10)
 
 
 # Call the update_btc_price function to start updating the BTCUSDT price every 5 seconds
